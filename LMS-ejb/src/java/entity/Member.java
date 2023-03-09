@@ -6,9 +6,11 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,10 +42,22 @@ public class Member implements Serializable {
     @Column(nullable = false)
     private String address;
     
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", fetch=FetchType.EAGER)
     private List<LendAndReturn> lending;
 
     public Member() {
+        this.lending = new ArrayList<>();
+    }
+
+    public Member(String firstName, String lastName, Character gender, Integer age, String identityNo, String phone, String address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.age = age;
+        this.identityNo = identityNo;
+        this.phone = phone;
+        this.address = address;
+        this.lending = new ArrayList<>();
     }
 
     public Long getMemberId() {

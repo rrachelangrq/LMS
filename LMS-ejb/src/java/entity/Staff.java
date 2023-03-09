@@ -11,12 +11,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author rachelang
  */
-@Entity
+@Entity(name="Staff")
 public class Staff implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -33,6 +34,13 @@ public class Staff implements Serializable {
     private String password;
 
     public Staff() {
+    }
+
+    public Staff(String firstName, String lastName, String userName, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
     }
 
     public Long getStaffId() {

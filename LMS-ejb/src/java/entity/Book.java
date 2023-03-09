@@ -6,9 +6,11 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,10 +34,18 @@ public class Book implements Serializable {
     @Column(nullable = false)
     private String author;
     
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", fetch=FetchType.EAGER)
     private List<LendAndReturn> lending;
 
     public Book() {
+        lending = new ArrayList<>();
+    }
+
+    public Book(String title, String isbn, String author) {
+        this.title = title;
+        this.isbn = isbn;
+        this.author = author;
+        lending = new ArrayList<>();
     }
 
     public Long getBookId() {
@@ -83,6 +93,48 @@ public class Book implements Serializable {
      */
     public void setLending(List<LendAndReturn> lending) {
         this.lending = lending;
+    }
+
+    /**
+     * @return the author
+     */
+    public String getAuthor() {
+        return author;
+    }
+
+    /**
+     * @param author the author to set
+     */
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    /**
+     * @return the title
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * @param title the title to set
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    /**
+     * @return the isbn
+     */
+    public String getIsbn() {
+        return isbn;
+    }
+
+    /**
+     * @param isbn the isbn to set
+     */
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
     
 }
