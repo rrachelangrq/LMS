@@ -1,5 +1,37 @@
-/LMS-ejb/build/
-/build/
-/LMS-ejb/dist/
-/LMS-war/build/
-/LMS-war/dist/
+# Compiled class file
+*.class
+
+#Log file
+*.Log
+
+# Package files #
+*.jar
+*.war
+*.ear
+*.zip
+
+#User defined
+LMS/nbproject/private/
+LMS/build/
+LMS/dist/
+LMS/LMS-ejb/nbproject/private/
+LMS/LMS-ejb/build/
+LMS/LMS/dist/
+
+LMS/LMS-war/nbproject/private/
+LMS/LMS-war/build/
+LMS/LMS-war/dist/
+
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+/LMS-war/nbproject/private/
+/LMS-ejb/nbproject/private/
