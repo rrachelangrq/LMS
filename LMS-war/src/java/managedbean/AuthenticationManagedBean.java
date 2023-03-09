@@ -63,6 +63,12 @@ public class AuthenticationManagedBean implements Serializable {
 
         return "/loginTemplateClient.xhtml?faces-redirect=true";
     } //end logout
+    
+    public String sessionTimedOut() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Warning: ", "Session timed out! Please login again!"));
+        return "/loginTemplateClient.xhtml?faces-redirect=true";
+    }
 
     public String getUsername() {
         return username;
