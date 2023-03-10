@@ -107,7 +107,7 @@ public class ReturnBookManagedBean implements Serializable {
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Note: ",  "Book " + book.getTitle() + " has been returned!")); //create redirect
             //returnPopUpManagedBean.setMessage("Book " + book.getTitle() + " has been returned!");
-            return "/secret/returnBookTemplateClient.xhtml?faces-redirect=true";
+            return "/secret/returnSuccessfulTemplateClient.xhtml?faces-redirect=true";
         } catch (LendingNotFoundException ex) {
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Error: ",  "No lending record found with this LendID!"));

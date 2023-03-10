@@ -22,8 +22,8 @@ import session.BookSessionLocal;
  * @author rachelang
  */
 @Named(value = "searchBooksManagedBean")
-@RequestScoped
-public class SearchBooksManagedBean {
+@ViewScoped
+public class SearchBooksManagedBean implements Serializable {
 
     @EJB(name = "BookSessionLocal")
     private BookSessionLocal bookSessionLocal;
@@ -57,7 +57,6 @@ public class SearchBooksManagedBean {
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Note: ",  "There are no books found!"));
         }
-        //return books;
     }
 
     public List<Book> getBooks() {

@@ -14,6 +14,7 @@ import java.util.Date;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -26,7 +27,7 @@ import session.MemberSessionLocal;
  * @author rachelang
  */
 @Named(value = "lendBookManagedBean")
-@ViewScoped
+@SessionScoped
 public class LendBookManagedBean implements Serializable {
 
     @EJB(name = "BookSessionLocal")
@@ -47,7 +48,7 @@ public class LendBookManagedBean implements Serializable {
     public LendBookManagedBean() {
     }
     
-    public void lendBook() {
+    public String lendBook() {
         Long bookId = Long.parseLong(bookIdStr.trim());
         Member member = memberSessionLocal.getMemberByIdNo(memberIdNo);
         Book book = bookSessionLocal.findBook(bookId);
@@ -71,7 +72,15 @@ public class LendBookManagedBean implements Serializable {
             lendAndReturnSessionLocal.createLendAndReturn(lend, book.getBookId(), member.getMemberId());
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Success: ",  "Book " + book.getTitle() + " lent to member " + member.getFirstName() + " " + member.getLastName()));
+            return "/secret/successfulLendTemplateClient.xhtml?faces-redirect=true";
         }
+        return "";
+    }
+    
+    public String cancel() {
+        bookIdStr = null;
+        memberIdNo = null;
+        return "/secret/searchBooksTemplateClient.xhtml?faces-redirect=true";
     }
     
     public void lendBook(String bookIdStr) {

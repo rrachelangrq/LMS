@@ -98,7 +98,7 @@ public class MemberSession implements MemberSessionLocal {
         }
         member.setFirstName(firstName);
         member.setLastName(lastName);
-        member.setPhone(address);
+        member.setPhone(phoneNumber);
         member.setAddress(address);
         return true;
     }

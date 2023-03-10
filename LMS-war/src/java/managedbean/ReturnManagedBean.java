@@ -26,4 +26,8 @@ public class ReturnManagedBean implements Serializable {
     public String returnHomePage() {
         return "/secret/frontPageTemplateClient.xhtml?faces-redirect=true";
     }
+    
+    public String redirectBorrowBook() {
+        return "/secret/borrowBookTemplateClient.xhtml?faces-redirect=true";
+    }
 }
