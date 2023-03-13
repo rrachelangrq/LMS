@@ -12,6 +12,7 @@ import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import session.BookSessionLocal;
 
 /**
@@ -28,13 +29,14 @@ public class NewBookManagedBean implements Serializable {
     private String title;
     private String isbn;
     private String author;
+
     /**
      * Creates a new instance of NewBookManagedBean
      */
     public NewBookManagedBean() {
     }
-    
-    public void createNewBook() {
+
+    public String createNewBook() {
         this.title = title.trim();
         this.author = author.trim();
         this.isbn = isbn.trim();
@@ -45,11 +47,19 @@ public class NewBookManagedBean implements Serializable {
         try {
             bookSessionLocal.createBook(newBook);
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Note: ",  "Book '" + newBook.getTitle() +"' created!"));
+            Flash flash = context.getExternalContext().getFlash();
+            flash.setKeepMessages(true);
+            flash.setRedirect(true);
+            context.addMessage(null, new FacesMessage("Note: ", "Book '" + newBook.getTitle() + "' created!"));
+            return "/secret/bookCreatedTemplateClient.xhtml?faces-redirect=true";
         } catch (Exception e) {
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Error: ",  "Book '" + newBook.getTitle() +"' not created!"));
+            Flash flash = context.getExternalContext().getFlash();
+            flash.setKeepMessages(true);
+            flash.setRedirect(true);
+            context.addMessage(null, new FacesMessage("Error: ", "Book '" + newBook.getTitle() + "' not created!"));
         }
+        return "/secret/createBookTemplateClient.xhtml";
     }
 
     public String getTitle() {
@@ -75,6 +85,5 @@ public class NewBookManagedBean implements Serializable {
     public void setAuthor(String author) {
         this.author = author;
     }
-    
-    
+
 }

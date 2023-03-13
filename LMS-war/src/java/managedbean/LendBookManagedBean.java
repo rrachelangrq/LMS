@@ -38,7 +38,7 @@ public class LendBookManagedBean implements Serializable {
 
     @EJB(name = "LendAndReturnSessionLocal")
     private LendAndReturnSessionLocal lendAndReturnSessionLocal;
-    
+
     private String bookIdStr;
     private String memberIdNo;
 
@@ -47,7 +47,7 @@ public class LendBookManagedBean implements Serializable {
      */
     public LendBookManagedBean() {
     }
-    
+
     public String lendBook() {
         Long bookId = Long.parseLong(bookIdStr.trim());
         Member member = memberSessionLocal.getMemberByIdNo(memberIdNo);
@@ -55,13 +55,13 @@ public class LendBookManagedBean implements Serializable {
         int numLending = book.getLending().size();
         if (book == null) {
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Error: ",  "No book found with this BookID!"));
+            context.addMessage(null, new FacesMessage("Error: ", "No book found with this BookID!"));
         } else if (member == null) {
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Error: ",  "No member found with this identification number!"));
+            context.addMessage(null, new FacesMessage("Error: ", "No member found with this identification number!"));
         } else if (numLending > 0 && book.getLending().get(numLending - 1).getReturnDate() == null) {
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Error: ",  "Book is currently unavailable!"));
+            context.addMessage(null, new FacesMessage("Error: ", "Book is currently unavailable!"));
         } else {
             LendAndReturn lend = new LendAndReturn();
             lend.setBook(book);
@@ -71,23 +71,27 @@ public class LendBookManagedBean implements Serializable {
             lend.setReturnDate(null);
             lendAndReturnSessionLocal.createLendAndReturn(lend, book.getBookId(), member.getMemberId());
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Success: ",  "Book " + book.getTitle() + " lent to member " + member.getFirstName() + " " + member.getLastName()));
+            context.addMessage(null, new FacesMessage("Success: ", "Book " + book.getTitle() + " lent to member " + member.getFirstName() + " " + member.getLastName()));
+            bookIdStr = null;
+            memberIdNo = null;
             return "/secret/successfulLendTemplateClient.xhtml?faces-redirect=true";
         }
+        bookIdStr = null;
+        memberIdNo = null;
         return "";
     }
-    
+
     public String cancel() {
         bookIdStr = null;
         memberIdNo = null;
         return "/secret/searchBooksTemplateClient.xhtml?faces-redirect=true";
     }
-    
+
     public void lendBook(String bookIdStr) {
         this.bookIdStr = bookIdStr;
         lendBook();
     }
-    
+
     public String getBookIdStr() {
         return bookIdStr;
     }

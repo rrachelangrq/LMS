@@ -7,6 +7,7 @@ package managedbean;
 
 import entity.LendAndReturn;
 import error.MemberNotFoundException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,7 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import session.MemberSessionLocal;
 
 /**
@@ -22,13 +24,14 @@ import session.MemberSessionLocal;
  * @author rachelang
  */
 @Named(value = "currentLendingManagedBean")
-@RequestScoped
-public class CurrentLendingManagedBean {
+@ViewScoped
+public class CurrentLendingManagedBean implements Serializable {
 
     @EJB(name = "MemberSessionLocal")
     private MemberSessionLocal memberSessionLocal;
     private String memberIdNo;
     private List<LendAndReturn> lendings;
+    private int numRes = 0;
     /**
      * Creates a new instance of CurrentLendingManagedBean
      */
@@ -45,6 +48,7 @@ public class CurrentLendingManagedBean {
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Error: ",  "No member found with this identification number!"));
         }
+        numRes = lendings.size();
     }
 
     public List<LendAndReturn> getLendings() {
@@ -61,6 +65,14 @@ public class CurrentLendingManagedBean {
 
     public void setMemberIdNo(String memberIdNo) {
         this.memberIdNo = memberIdNo;
+    }
+
+    public int getNumRes() {
+        return numRes;
+    }
+
+    public void setNumRes(int numRes) {
+        this.numRes = numRes;
     }
     
     

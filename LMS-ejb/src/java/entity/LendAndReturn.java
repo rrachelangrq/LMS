@@ -30,10 +30,10 @@ public class LendAndReturn implements Serializable {
     private Long lendId;
     //private Long memberId;
     //private Long bookId;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date lendDate;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     @Column
     private Date returnDate;
     @Column

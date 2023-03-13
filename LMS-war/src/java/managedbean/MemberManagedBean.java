@@ -40,7 +40,7 @@ public class MemberManagedBean implements Serializable {
     public MemberManagedBean() {
     }
     
-    public void createMember() {
+    public String createMember() {
         Member member = memberSessionLocal.getMemberByIdNo(getIdentityNumber());
         if (member == null) {
             try {
@@ -52,7 +52,7 @@ public class MemberManagedBean implements Serializable {
                 memberSessionLocal.createMember(new Member(firstName, lastName, getGender(), getAge(), identityNumber, phoneNumber, address));
                 FacesContext context = FacesContext.getCurrentInstance();
                 context.addMessage(null, new FacesMessage("Success: ",  "Member, " + firstName + " " + lastName + " with identification number " + identityNumber + " created!"));
-                //return "/secret/createMemberTemplateClient.xhtml";
+                return "/secret/memberCreatedTemplateClient.xhtml?faces-redirect=true";
             } catch (EntityAlreadyExistsException ex) {
                 setFirstName(null);
                 setLastName(null);
@@ -63,7 +63,7 @@ public class MemberManagedBean implements Serializable {
                 setAddress(null);
                 FacesContext context = FacesContext.getCurrentInstance();
                 context.addMessage(null, new FacesMessage("Error: ",  "Member with this identification number already exists!"));
-                //return "/secret/createMemberTemplateClient.xhtml"; // no create
+                return "/secret/createMemberTemplateClient.xhtml"; // no create
             }
         } else {
             setFirstName(null);
@@ -75,7 +75,7 @@ public class MemberManagedBean implements Serializable {
             setAddress(null);
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Error: ",  "Member with this identification number already exists!"));
-            //return "/secret/createMemberTemplateClient.xhtml"; // no create
+            return "/secret/createMemberTemplateClient.xhtml"; // no create
         }
     }
 

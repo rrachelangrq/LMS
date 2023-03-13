@@ -30,4 +30,8 @@ public class ReturnManagedBean implements Serializable {
     public String redirectBorrowBook() {
         return "/secret/borrowBookTemplateClient.xhtml?faces-redirect=true";
     }
+    
+    public String redirectReturnBook() {
+        return "/secret/finalReturnTemplateClient.xhtml?faces-redirect=true";
+    }
 }
