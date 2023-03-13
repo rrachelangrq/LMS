@@ -120,6 +120,16 @@ public class BookSession implements BookSessionLocal {
     public Book findBook(Long bookId) {
         return em.find(Book.class, bookId);
     }
-    
-    
+
+    @Override
+    public boolean editBook(Long bookId, String title, String author, String isbn) {
+        Book book = em.find(Book.class, bookId);
+        if (book == null) {
+            return false;
+        }
+        book.setAuthor(author.trim());
+        book.setIsbn(isbn.trim());
+        book.setTitle(title.trim());
+        return true;
+    }  
 }

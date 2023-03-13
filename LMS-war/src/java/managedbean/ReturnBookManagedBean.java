@@ -84,6 +84,7 @@ public class ReturnBookManagedBean implements Serializable {
                 currLending = null;
                 fineAmountPaidFloat = 0.0f;
                 fineAmount = new BigDecimal(0);
+                lendIdStr = null;
                 return "/secret/deficitFineTemplateClient.xhtml?faces-redirect=true";
             } else if (amountPaid.compareTo(fineAmount) > 0) {
                 // too much
@@ -94,6 +95,7 @@ public class ReturnBookManagedBean implements Serializable {
                 currLending = null;
                 fineAmountPaidFloat = 0.0f;
                 fineAmount = new BigDecimal(0);
+                lendIdStr = null;
                 return "/secret/excessFineTemplateClient.xhtml?faces-redirect=true";
             }
             isPaid = true;
@@ -102,6 +104,7 @@ public class ReturnBookManagedBean implements Serializable {
             currLending = null;
             fineAmountPaidFloat = 0.0f;
             fineAmount = new BigDecimal(0);
+            lendIdStr = null;
             LendAndReturn lend = lendAndReturnSessionLocal.getLending(lendId);
             Book book = lend.getBook();
             FacesContext context = FacesContext.getCurrentInstance();

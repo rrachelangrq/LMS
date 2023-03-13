@@ -29,4 +29,6 @@ public interface BookSessionLocal {
     List<Book> searchAvailBookByAuthor(String author);
 
     Book findBook(Long bookId);
+
+    boolean editBook(Long bookId, String title, String author, String isbn);
 }
