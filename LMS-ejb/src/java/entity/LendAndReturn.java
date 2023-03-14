@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
+import javax.validation.constraints.Digits;
 
 /**
  *
@@ -37,6 +38,7 @@ public class LendAndReturn implements Serializable {
     @Column
     private Date returnDate;
     @Column
+    @Digits(integer=3, fraction=2)
     private BigDecimal fineAmount;
     
     @ManyToOne(optional = false, fetch=FetchType.EAGER)
