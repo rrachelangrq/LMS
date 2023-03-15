@@ -6,6 +6,7 @@
 package managedbean;
 
 import entity.LendAndReturn;
+import entity.Member;
 import error.MemberNotFoundException;
 import java.io.Serializable;
 import java.util.List;
@@ -32,23 +33,35 @@ public class CurrentLendingManagedBean implements Serializable {
     private String memberIdNo;
     private List<LendAndReturn> lendings;
     private int numRes = 0;
+
     /**
      * Creates a new instance of CurrentLendingManagedBean
      */
     public CurrentLendingManagedBean() {
     }
+
     public void viewAllCurrentLendings() {
-        try {
-            lendings = memberSessionLocal.viewAllMembersCurrLending(memberIdNo);
+        Member member = memberSessionLocal.getMemberByIdNo(memberIdNo);
+        if (member == null) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Error: ", "No member found with this identification number!"));
+            lendings = null;
+            memberIdNo = null;
+        } else {
+            try {
+                lendings = memberSessionLocal.viewAllMembersCurrLending(memberIdNo);
+            } catch (MemberNotFoundException ex) {
+                //
+            }
+            numRes = lendings.size();
             if (lendings.isEmpty()) {
                 FacesContext context = FacesContext.getCurrentInstance();
-                context.addMessage(null, new FacesMessage("Note: ",  "Member has not lent any books!"));
+                context.addMessage(null, new FacesMessage("Note: ", "Member has not lent any books!"));
+                lendings = null;
+                memberIdNo = null;
             }
-        } catch (MemberNotFoundException ex) {
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Error: ",  "No member found with this identification number!"));
         }
-        numRes = lendings.size();
+        
     }
 
     public List<LendAndReturn> getLendings() {
@@ -74,6 +87,5 @@ public class CurrentLendingManagedBean implements Serializable {
     public void setNumRes(int numRes) {
         this.numRes = numRes;
     }
-    
-    
+
 }
