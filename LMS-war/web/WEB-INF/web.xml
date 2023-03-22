@@ -27,6 +27,10 @@
         <local>session.MemberSessionLocal</local>
         <ejb-link>LMS-ejb.jar#MemberSession</ejb-link>
     </ejb-local-ref>
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>nova-dark</param-value>
+    </context-param>
     <mime-mapping>
         <extension>jsf<!--{or the extension of file}--></extension>
         <mime-type>text/html</mime-type>
@@ -47,5 +51,12 @@
         <extension>json</extension>
         <mime-type>application/json</mime-type>
     </mime-mapping>
-
+    <mime-mapping>
+        <extension>woff2</extension>
+        <mime-type>font/woff2</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>ttf</extension>
+        <mime-type>font/ttf</mime-type>
+    </mime-mapping>
 </web-app>
