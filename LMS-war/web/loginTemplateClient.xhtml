@@ -19,27 +19,29 @@
     </ui:define>
 
     <ui:define name="content">
-        <div class="ui-g">
-            <div class="ui-g-4"></div>
+        <div align="center">
             <img src="img/login.jpg" width="450px"/><br></br>
         </div>
-        <div class="ui-g">
-        <div class="ui-g-4"></div>
-            <h:form>
-                <p:growl id="growl" showDetail="true" sticky="true" /> 
-                <h:panelGrid columns="2" cellpadding="5">
-                    <p:outputLabel for="username" value="Username: " />
-                    <p:inputText id="username" value="#{authenticationManagedBean.username}" />
+        <div align="center">
+            <div align="center">
+                <div class="card" style="width: 450px; background-color: white; padding-top: 20px; padding-bottom: 20px;">
+                    <h:form>
+                        <p:growl id="growl" showDetail="true" sticky="true" /> 
 
-                    <p:outputLabel for="password" value="Password: " />
-                    <p:password id="password" value="#{authenticationManagedBean.password}" />
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <p:outputLabel for="username" value="Username: " />
+                            <p:inputText id="username" value="#{authenticationManagedBean.username}" />
 
-                    <p:commandButton value="Reset" type="reset" />
-                    <p:commandButton value="Login" action="#{authenticationManagedBean.login}" update="growl" styleClass="ui-button-outlined"/>
-                </h:panelGrid>
-
-            </h:form>
-        
+                            <p:outputLabel for="password" value="Password: " />
+                            <p:password id="password" value="#{authenticationManagedBean.password}" />
+                            <div align="center">
+                            <!--<p:commandButton value="Reset" type="reset" />-->
+                            <p:commandButton value="Login" action="#{authenticationManagedBean.login}" update="growl" styleClass="ui-button-outlined"/>
+                            </div>
+                        </h:panelGrid>
+                    </h:form>
+                </div>
+            </div>
         </div>
     </ui:define>
 
