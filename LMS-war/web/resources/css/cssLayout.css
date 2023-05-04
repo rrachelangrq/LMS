@@ -1,7 +1,7 @@
 
 #top {
     position: relative;
-    background-color: #7aaab9;
+    background-color: #d5e2ff;
     color: pink;
     padding: 5px;
     margin: 0px 0px 10px 0px;
@@ -30,18 +30,18 @@
 
 .center_content {
     position: relative;
-    background-color: #dddddd;
+    background-color: white;
     padding: 5px;
 }
 
 .left_content {
-    background-color: #dddddd;
+    background-color: white;
     padding: 5px;
     margin-left: 170px;
 }
 
 .right_content {
-    background-color: #dddddd;
+    background-color: white;
     padding: 5px;
     margin: 0px 170px 0px 170px;
 }

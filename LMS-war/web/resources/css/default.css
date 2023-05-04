@@ -1,5 +1,5 @@
 body {
-    background-color: pink;
+    background-color: white;
     font-size: 12px;
     font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
     color: #000000;  
@@ -26,4 +26,9 @@ a:link:hover, a:visited:hover  {
   color: #89a7d4;
   font-weight : bold;
   text-decoration : underline;
+}
+
+.header {
+    font-size: 25px;
+    padding: 5px;
 }

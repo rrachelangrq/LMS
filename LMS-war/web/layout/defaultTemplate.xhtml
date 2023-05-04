@@ -12,18 +12,21 @@
         <title><ui:insert name="title">Title</ui:insert></title>
     </h:head>
 
-    <h:body style="background-color: #c2dfef">
+    <h:body>
         <div class="top" id="top">
-            <img src="../img/lmslogo.jpg" width="100px" style="margin-right: 20px"/>
-            <br/>
-            <h:form>
-                <p:commandButton value="Logout" id="logout" action="#{authenticationManagedBean.logout}" style="margin-left:10px; background-color:#9dbffa " ajax="false" />
-            </h:form>
+            <div class="nav">
+                <div class="nav-brand">
+                    <img src="../img/lmslogo.jpg" width="100px" style="margin-right: 20px"/>
+                </div>
+                <h:form>
+                    <p:commandButton value="Logout" id="logout" action="#{authenticationManagedBean.logout}" style="margin-left:10px; background-color:#9dbffa " ajax="false" />
+                </h:form>
+            </div>
         </div>
         <div class="left" id="left">
             <ui:insert name="left">Left</ui:insert>
         </div>
-        <div id="content" class="left_content" style="background-color: #cfebfa">
+        <div id="content" class="left_content">
             <ui:insert name="content">Content</ui:insert>
         </div>
 
